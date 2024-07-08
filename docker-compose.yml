@@ -1,0 +1,13 @@
+version: "3.0"
+
+services:
+  node-docker-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name:
+      "node-docker-app"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./src:/usr/src/app/src
