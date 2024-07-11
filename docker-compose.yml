@@ -11,3 +11,23 @@ services:
       - "3000:3000"
     volumes:
       - ./src:/usr/src/app/src
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: qwezxc
+    ports:
+      - "5432:5432"
+  web:
+    build: .
+    command: npm start
+    depends_on:
+      - db
+    ports:
+      - "3001:3001"
+    environment:
+      PGHOST: db
+      PGUSER: postgres
+      PGPASSWORD: qwezxc
+      PGDATABASE: auth_db
+      PGPORT: 5432
